@@ -1,0 +1,45 @@
+problem:
+  shape:
+    name: CNN-Layer
+    dimensions: [N, C, K, R, S, P, Q]
+    coefficients:
+      - name: Wstride
+        default: 1
+      - name: Hstride
+        default: 1
+      - name: Wdilation
+        default: 1
+      - name: Hdilation
+        default: 1
+    data_spaces:
+      - name: Weights
+        projection:
+          - [ [C] ]
+          - [ [K] ]
+          - [ [R] ]
+          - [ [S] ]
+      - name: Inputs
+        projection:
+          - [ [N] ]
+          - [ [C] ]
+          - [ [R, Wdilation], [P, Wstride] ]
+          - [ [S, Hdilation], [Q, Hstride] ]
+      - name: Outputs
+        projection:
+          - [ [N] ]
+          - [ [K] ]
+          - [ [P] ]
+          - [ [Q] ]
+        read_write: True
+  instance:
+    N: 1
+    C: 64
+    K: 64
+    R: 3
+    S: 3
+    P: 56
+    Q: 56
+    Wstride: 1
+    Hstride: 1
+    Wdilation: 1
+    Hdilation: 1
