@@ -1,0 +1,55 @@
+variables:
+  version: 0.4
+  global_cycle_seconds: 1e-09
+  technology: "45nm"
+
+architecture:
+  version: 0.4
+
+  nodes:
+
+  - !Container
+    name: system
+
+  - !Component
+    name: DRAM
+    class: DRAM
+    attributes:
+      depth: 1048576
+      width: 64
+      datawidth: 8
+
+  - !Component
+    name: GlobalBuffer
+    class: SRAM
+    attributes:
+      depth: 4096
+      width: 64
+      n_banks: 1
+      datawidth: 8
+      read_bandwidth: 2
+      write_bandwidth: 2
+
+  - !Container
+    name: PE
+    spatial:
+      meshX: 4
+      meshY: 4
+
+  - !Component
+    name: RF
+    class: regfile
+    attributes:
+      depth: 32
+      width: 64
+      n_banks: 1
+      datawidth: 8
+      read_bandwidth: 2
+      write_bandwidth: 2
+
+  - !Component
+    name: MAC
+    class: intmac
+    attributes:
+      datawidth: 8
+      width: 8
