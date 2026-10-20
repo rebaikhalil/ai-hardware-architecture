@@ -1,0 +1,43 @@
+variables:
+  global_cycle_seconds: "1ns"
+
+architecture:
+  version: 0.4
+
+  subtree:
+  - name: system
+    local:
+    - name: DRAM
+      class: DRAM
+      attributes:
+        width: 64
+
+    subtree:
+    - name: GlobalBuffer
+      local:
+      - name: GlobalBuffer
+        class: SRAM
+        attributes:
+          depth: 4096
+          width: 64
+          n_banks: 1
+          read_bandwidth: 2
+          write_bandwidth: 2
+
+      subtree:
+      - name: PE
+        local:
+        - name: RF
+          class: regfile
+          attributes:
+            depth: 32
+            width: 64
+            n_banks: 1
+            read_bandwidth: 2
+            write_bandwidth: 2
+
+        - name: MAC
+          class: intmac
+
+        meshX: 8
+        meshY: 8
