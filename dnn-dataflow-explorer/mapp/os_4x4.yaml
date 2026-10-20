@@ -1,0 +1,15 @@
+mapping:
+  - target: PE
+    type: spatial
+    factors: P=4 Q=4
+    permutation: PQ
+   
+  - target: PE
+    type: temporal
+    factors: N=1 K=64 C=64 R=3 S=3 P=14 Q=14
+    permutation: NKCRSPQ
+    
+  - target: GlobalBuffer
+    type: temporal
+    factors: N=1 R=1 S=1 P=1 Q=1 C=1 K=1
+    permutation: NKCRSPQ
