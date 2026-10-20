@@ -1,0 +1,8 @@
+mapper:
+  version: 0.4
+  algorithm: hybrid
+  optimization_metric: [ edp ]
+  timeout: 1000
+  victory_condition: 500
+  search_size: 0
+  diagnostics: true
